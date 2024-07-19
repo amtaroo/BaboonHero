@@ -9,9 +9,17 @@ public class NPC : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public string[] dialogue;
     public GameObject continueButton;
+    public AudioClip hiSound;
+    private AudioSource audioSource;
     private int index;
     public float wordSpeed = 0.1f;
     private bool playerIsClose;
+    private Coroutine typingCoroutine;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -20,17 +28,27 @@ public class NPC : MonoBehaviour
             if (dialoguePanel.activeInHierarchy)
             {
                 zeroText();
+                ResumeGame();
             }
             else
             {
                 dialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
+                typingCoroutine = StartCoroutine(Typing());
+                PauseGame();
+                PlayHiSound();
             }
         }
 
         if (dialogueText.text == dialogue[index])
         {
             continueButton.SetActive(true);
+        }
+
+        if (Input.GetMouseButtonDown(0) && dialoguePanel.activeInHierarchy && typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            dialogueText.text = dialogue[index];
+            typingCoroutine = null;
         }
     }
 
@@ -39,15 +57,18 @@ public class NPC : MonoBehaviour
         dialogueText.text = "";
         index = 0;
         dialoguePanel.SetActive(false);
+        ResumeGame();
     }
 
     IEnumerator Typing()
     {
+        dialogueText.text = "";
         foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(wordSpeed);
+            yield return new WaitForSecondsRealtime(wordSpeed);
         }
+        typingCoroutine = null;
     }
 
     public void NextLine()
@@ -56,12 +77,12 @@ public class NPC : MonoBehaviour
         if (index < dialogue.Length - 1)
         {
             index++;
-            dialogueText.text = "";
-            StartCoroutine(Typing());
+            typingCoroutine = StartCoroutine(Typing());
         }
         else
         {
             zeroText();
+            ResumeGame();
         }
     }
 
@@ -79,6 +100,25 @@ public class NPC : MonoBehaviour
         {
             playerIsClose = false;
             zeroText();
+            ResumeGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    private void PlayHiSound()
+    {
+        if (audioSource != null && hiSound != null)
+        {
+            audioSource.PlayOneShot(hiSound);
         }
     }
 }

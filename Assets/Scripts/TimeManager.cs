@@ -4,14 +4,14 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    public float timeLimit = 10f; // Time limit in seconds
-    public TextMeshProUGUI warningText; // Reference to the TextMeshProUGUI component for displaying messages
-    private bool isCounting; // Flag to check if counting time
+    public float timeLimit = 10f;
+    public TextMeshProUGUI warningText;
+    private bool isCounting; 
 
     void Start()
     {
         isCounting = false;
-        warningText.gameObject.SetActive(false); // Hide the warning text initially
+        warningText.gameObject.SetActive(false);
     }
 
     public void StartTrashSorting()
@@ -31,7 +31,7 @@ public class TimeManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        // Time's up logic here
+
         ShowWarningMessage("Time's up!", 1f, Color.white);
         isCounting = false;
     }
