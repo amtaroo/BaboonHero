@@ -19691,7 +19691,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.48, y: 4.14}
+  m_Offset: {x: -0.48000002, y: 3.331462}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19702,7 +19702,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.95, y: 2.67}
+  m_Size: {x: 2.95, y: 1.052923}
   m_EdgeRadius: 0
 --- !u!483693784 &1275354940
 TilemapRenderer:
@@ -23978,7 +23978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bfe75abea5e154399b58804d9fcbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 80
+  timeRemaining: 90
   timerText: {fileID: 183997262}
   GameOverPanel: {fileID: 1046236011}
 --- !u!114 &1773997968
