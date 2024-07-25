@@ -15,10 +15,16 @@ public class NPC : MonoBehaviour
     public float wordSpeed = 0.1f;
     private bool playerIsClose;
     private Coroutine typingCoroutine;
+    private AudioManager audioManager;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager not found in the scene. Please add one.");
+        }
     }
 
     void Update()
@@ -116,9 +122,9 @@ public class NPC : MonoBehaviour
 
     private void PlayHiSound()
     {
-        if (audioSource != null && hiSound != null)
+        if (audioSource != null && hiSound != null && audioManager != null)
         {
-            audioSource.PlayOneShot(hiSound);
+            audioManager.PlaySFX(audioManager.NPC);
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Box
   - TrashBin
   - Trash
+  - Audio
   layers:
   - Default
   - TransparentFX

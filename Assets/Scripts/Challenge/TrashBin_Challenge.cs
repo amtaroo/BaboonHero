@@ -6,15 +6,13 @@ using TMPro;
 public class TrashBin_Challenge : MonoBehaviour
 {
     public TrashType acceptedTrashType;
-    public AudioClip correctSound;
-    public AudioClip incorrectSound;
     public TextMeshProUGUI warningText;
     public Transform playerTransform;
-    private AudioSource audioSource;
+    AudioManager audioManager;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         warningText.gameObject.SetActive(false);
     }
 
@@ -27,7 +25,7 @@ public class TrashBin_Challenge : MonoBehaviour
             {
                 Destroy(other.gameObject);
                 StartCoroutine(ShowMessage("Correct!", 1f, "#FFFFFF"));
-                audioSource.PlayOneShot(correctSound);
+                audioManager.PlaySFX(audioManager.correct);
                 Debug.Log(acceptedTrashType + " trash collected!");
 
                 ChallengeModeManager.Instance.CollectTrash(true);
@@ -40,7 +38,7 @@ public class TrashBin_Challenge : MonoBehaviour
                     Vector2 bounceDirection = (other.transform.position - transform.position).normalized;
                     rb.AddForce(bounceDirection * 500f);
                     StartCoroutine(ShowMessage("Incorrect!", 1f, "#AE0000"));
-                    audioSource.PlayOneShot(incorrectSound);
+                    audioManager.PlaySFX(audioManager.incorrect);
                     Debug.Log("Incorrect trash type! Try again!");
 
                     ChallengeModeManager.Instance.CollectTrash(false);

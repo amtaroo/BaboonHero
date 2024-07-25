@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    public GameObject OptionsMenu;
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -39,5 +40,13 @@ public class PauseMenu : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+    public void OnClickOptions()
+    {
+        OptionsMenu.SetActive(true);
+    }
+    public void CloseOptions()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
