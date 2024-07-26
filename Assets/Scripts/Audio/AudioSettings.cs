@@ -19,9 +19,7 @@ public class AudioSettings : MonoBehaviour
             SetMusicVolume();
             SetSFXVolume();
         }
-        
-     //   musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
-     //   SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
+
     }
 
     public void SetMusicVolume()

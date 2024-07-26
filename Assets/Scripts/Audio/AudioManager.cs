@@ -39,9 +39,5 @@ public class AudioManager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
-/*
-    public void SetSFXVolume(float volume)
-    {
-        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
-    }*/
+
 }

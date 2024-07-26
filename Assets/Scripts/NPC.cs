@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         if (audioManager == null)
         {
-            Debug.LogError("AudioManager not found in the scene. Please add one.");
+            Debug.LogError("AudioManager not found.");
         }
     }
 

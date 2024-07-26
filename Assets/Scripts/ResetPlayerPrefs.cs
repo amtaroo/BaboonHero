@@ -1,4 +1,4 @@
-
+/*
 using UnityEngine;
 using UnityEditor;
 
@@ -14,3 +14,4 @@ public class ResetPlayerPrefs : EditorWindow
     }
 
 }
+*/
