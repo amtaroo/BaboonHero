@@ -19664,6 +19664,7 @@ MonoBehaviour:
   - {fileID: 899091605}
   - {fileID: 1232559524}
   endGamePanel: {fileID: 2132718251}
+  GameOverPanel: {fileID: 1046236011}
 --- !u!114 &1773997967
 MonoBehaviour:
   m_ObjectHideFlags: 0

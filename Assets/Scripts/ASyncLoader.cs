@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ASyncLoader : MonoBehaviour
 {
-    [Header("Slider")]
+    [Header("GameObject")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject levelMenu;
     
