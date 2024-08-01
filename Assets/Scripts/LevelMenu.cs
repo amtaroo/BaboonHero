@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +7,13 @@ using UnityEngine.UI;
 public class LevelMenu : MonoBehaviour
 {
     public Button[] buttons; 
-    public GameObject levelButton; 
+    public GameObject[] levelButtons; // Array ของ GameObjects
 
     private void Awake()
     {
-
         ButtonsToArray();
 
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
-
 
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -38,15 +35,24 @@ public class LevelMenu : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
-
     void ButtonsToArray()
     {
-        int childCount = levelButton.transform.childCount;
-        buttons = new Button[childCount];
+        List<Button> buttonList = new List<Button>();
 
-        for (int i = 0; i < childCount; i++)
+        foreach (GameObject levelButton in levelButtons)
         {
-            buttons[i] = levelButton.transform.GetChild(i).gameObject.GetComponent<Button>();
+            int childCount = levelButton.transform.childCount;
+
+            for (int i = 0; i < childCount; i++)
+            {
+                Button btn = levelButton.transform.GetChild(i).gameObject.GetComponent<Button>();
+                if (btn != null)
+                {
+                    buttonList.Add(btn);
+                }
+            }
         }
+
+        buttons = buttonList.ToArray();
     }
 }
