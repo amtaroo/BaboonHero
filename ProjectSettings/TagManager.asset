@@ -9,6 +9,7 @@ TagManager:
   - TrashBin
   - Trash
   - Audio
+  - SpeedBoost
   layers:
   - Default
   - TransparentFX
