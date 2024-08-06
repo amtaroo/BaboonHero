@@ -10,19 +10,25 @@ public class Timer_Challenge : MonoBehaviour
     private float timeElapsed;
     public GameObject GameOverPanel;
 
+    // ตัวแปรเพื่อจัดการสถานะของ Time Freeze
+    private bool isTimeFrozen = false;
+
     void Update()
     {
-        if (timeRemaining > 0)
+        if (!isTimeFrozen) // ตรวจสอบว่าเวลาถูกหยุดหรือไม่
         {
-            timeElapsed += Time.deltaTime;
-            timeRemaining -= Time.deltaTime;
-            DisplayTime(timeRemaining);
-        }
-        else
-        {
-            if (!ChallengeModeManager.Instance.endGamePanel.activeSelf)
+            if (timeRemaining > 0)
             {
-                Debug.Log("Time's up!");
+                timeElapsed += Time.deltaTime;
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                if (!ChallengeModeManager.Instance.endGamePanel.activeSelf)
+                {
+                    Debug.Log("Time's up!");
+                }
             }
         }
     }
@@ -32,7 +38,7 @@ public class Timer_Challenge : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("Time : " + "{0:00}:{1:00}", minutes, seconds);
     }
 
     public float GetTimeRemaining()
@@ -44,5 +50,10 @@ public class Timer_Challenge : MonoBehaviour
     {
         return timeElapsed;
     }
-}
 
+    // ฟังก์ชันสำหรับการจัดการ Time Freeze
+    public void SetTimeFrozen(bool frozen)
+    {
+        isTimeFrozen = frozen;
+    }
+}

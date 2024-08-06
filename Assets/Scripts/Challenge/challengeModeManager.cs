@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-
 public class ChallengeModeManager : MonoBehaviour
 {
     public static ChallengeModeManager Instance { get; private set; }
@@ -16,9 +15,14 @@ public class ChallengeModeManager : MonoBehaviour
     public float gameDuration = 60f;
     private float elapsedTime = 0f;
 
-    public int score = 0; 
-    public TextMeshProUGUI scoreText; 
+    public int score = 0;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI finalScoreText;
+
+    public bool isDoublePointsActive = false;
+    public float doublePointsDuration = 10f;
+
+    private List<Transform> occupiedSpawnPoints = new List<Transform>();
 
     void Awake()
     {
@@ -35,7 +39,7 @@ public class ChallengeModeManager : MonoBehaviour
     void Start()
     {
         endGamePanel.SetActive(false);
-        UpdateScoreText(); 
+        UpdateScoreText();
         StartCoroutine(SpawnTrashItems());
         StartCoroutine(GameTimer());
     }
@@ -53,25 +57,70 @@ public class ChallengeModeManager : MonoBehaviour
     {
         if (trashPrefabs.Count > 0 && spawnPoints.Length > 0)
         {
-            GameObject trashToSpawn = trashPrefabs[Random.Range(0, trashPrefabs.Count)];
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            
-            Instantiate(trashToSpawn, spawnPoint.position, spawnPoint.rotation);
+            Transform spawnPoint = GetAvailableSpawnPoint();
+
+            if (spawnPoint != null)
+            {
+                GameObject trashToSpawn = trashPrefabs[Random.Range(0, trashPrefabs.Count)];
+                Instantiate(trashToSpawn, spawnPoint.position, spawnPoint.rotation);
+                occupiedSpawnPoints.Add(spawnPoint);
+            }
         }
+    }
+
+    Transform GetAvailableSpawnPoint() //ขยะจะไม่spawnในตำแหน่งที่มีขยะอยู่แล้ว
+    {
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+
+        foreach (var occupiedPoint in occupiedSpawnPoints)
+        {
+            availableSpawnPoints.Remove(occupiedPoint);
+        }
+
+        if (availableSpawnPoints.Count > 0)
+        {
+            return availableSpawnPoints[Random.Range(0, availableSpawnPoints.Count)];
+        }
+
+        return null; 
     }
 
     public void CollectTrash(bool correctDisposal)
     {
         collectedTrashItems++;
-        if (correctDisposal)
+        int points = correctDisposal ? 10 : -20;
+
+        if (isDoublePointsActive) //Point x2
         {
-            score += 10; 
+            points *= 2;
         }
-        else
+
+        score += points;
+        UpdateScoreText();
+    }
+
+    public void ActivateDoublePoints()
+    {
+        if (!isDoublePointsActive)
         {
-            score -= 20; 
+            isDoublePointsActive = true;
+            StartCoroutine(DoublePointsTimer());
         }
-        UpdateScoreText(); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DoublePointsItem"))
+        {
+            ActivateDoublePoints();
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private IEnumerator DoublePointsTimer()
+    {
+        yield return new WaitForSeconds(doublePointsDuration);
+        isDoublePointsActive = false;
     }
 
     void UpdateScoreText()

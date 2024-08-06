@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private int collectedTrashItems = 0;
     public GameObject endGamePanel;
     public GameObject GameOverPanel;
+    private bool isTimeFrozen = false;
 
 
     void Awake()
@@ -28,6 +29,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         endGamePanel.SetActive(false);
+    }
+    public void SetTimeFrozen(bool frozen)
+    {
+        isTimeFrozen = frozen;
+    }
+
+    public bool IsTimeFrozen()
+    {
+        return isTimeFrozen;
     }
 
     public void CollectTrash()

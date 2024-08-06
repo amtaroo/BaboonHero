@@ -10,20 +10,25 @@ public class Timer : MonoBehaviour
     private float timeElapsed;
     public GameObject GameOverPanel;
 
+    private bool isTimeFrozen;
+
     void Update()
     {
-        if (timeRemaining > 0)
+        if (!GameManager.Instance.IsTimeFrozen()) // ตรวจสอบว่าเวลาถูกหยุดหรือไม่
         {
-            timeElapsed += Time.deltaTime;
-            timeRemaining -= Time.deltaTime;
-            DisplayTime(timeRemaining);
-        }
-        else
-        {
-            if (!GameManager.Instance.endGamePanel.activeSelf)
+            if (timeRemaining > 0)
             {
-                Debug.Log("Time's up!");
-                GameOverPanel.SetActive(true);
+                timeElapsed += Time.deltaTime;
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                if (!GameManager.Instance.endGamePanel.activeSelf)
+                {
+                    Debug.Log("Time's up!");
+                    GameOverPanel.SetActive(true);
+                }
             }
         }
     }
@@ -33,7 +38,12 @@ public class Timer : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("Time : " + "{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void SetTimeFrozen(bool isFrozen)
+    {
+        isTimeFrozen = isFrozen;
     }
 
     public float GetTimeRemaining()

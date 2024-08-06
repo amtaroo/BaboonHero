@@ -5,6 +5,7 @@ using TMPro;
 
 public class TrashBin : MonoBehaviour
 {
+    public TrashType trashType;
     public TrashType acceptedTrashType;
     public TextMeshProUGUI warningText;
     public Transform playerTransform;
@@ -36,6 +37,7 @@ public class TrashBin : MonoBehaviour
                 Debug.Log(acceptedTrashType + " trash collected!");
 
                 GameManager.Instance.CollectTrash();
+                
             }
             else
             {

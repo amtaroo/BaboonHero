@@ -134,9 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a593e6939a044d9f785caf1a0fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 3528661688454360988}
-  animator: {fileID: 7589492811716830571}
+  normalSpeed: 5
+  boostedSpeed: 10
+  boostDuration: 5
+  magnetRadius: 2
+  magnetDuration: 10
 --- !u!114 &449724042865846351
 MonoBehaviour:
   m_ObjectHideFlags: 0

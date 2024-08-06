@@ -1,46 +1,3 @@
-/*
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
-{
-    public float moveSpeed = 5f;
-    public Rigidbody2D rb;
-    public Animator animator;
-    private Vector2 movement;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
-
-    //ชนกับถังขยะ
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("TrashBin"))
-        {
-            
-        }
-    }
-    
-}
-*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,30 +8,40 @@ public class PlayerMovement : MonoBehaviour
     public float boostedSpeed = 10f;
     public float boostDuration = 5f;
 
+    public float magnetRadius = 5f;
+    public float magnetDuration = 10f;
+
     private float currentSpeed;
-    private bool isBoosted = false;
     private Rigidbody2D rb;
     private Animator animator;
+    private Vector2 movement;
+    private Coroutine magnetCoroutine;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentSpeed = normalSpeed;
     }
 
-    private void Update()
+    void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(moveX, moveY).normalized * currentSpeed;
-        rb.velocity = movement;
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (animator != null)
+        if (magnetCoroutine != null)
         {
-            animator.SetFloat("Speed", movement.magnitude);
+            AttractItems();
         }
+    }
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,18 +49,70 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("SpeedBoost"))
         {
             StartCoroutine(SpeedBoost());
-            Destroy(collision.gameObject); // ลบไอเท็มออกเมื่อชน
+            Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Magnet"))
+        {
+            if (magnetCoroutine != null)
+            {
+                StopCoroutine(magnetCoroutine);
+            }
+
+            magnetCoroutine = StartCoroutine(DeactivateMagnetAfterDuration(magnetDuration));
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("DoublePointsItem"))
+        {
+            ChallengeModeManager.Instance.ActivateDoublePoints();
+            Destroy(collision.gameObject);
+        }
+
+
+        if (collision.CompareTag("TimeFreeze"))
+        {
+            Debug.Log("TimeFreeze item collected!");
+            TimeFreezeManager.Instance.FreezeTime(); // เรียกใช้งานฟังก์ชันหยุดเวลา
+            Destroy(collision.gameObject);
+        }
+
+
+
     }
 
     private IEnumerator SpeedBoost()
     {
-        isBoosted = true;
         currentSpeed = boostedSpeed;
 
         yield return new WaitForSeconds(boostDuration);
 
         currentSpeed = normalSpeed;
-        isBoosted = false;
+    }
+
+    private IEnumerator DeactivateMagnetAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        magnetCoroutine = null;
+    }
+
+    private void AttractItems()
+    {
+        Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, magnetRadius);
+
+        foreach (Collider2D item in items)
+        {
+            if (item.gameObject.CompareTag("Trash"))
+            {
+                Vector2 direction = transform.position - item.transform.position;
+                item.transform.position = Vector2.MoveTowards(item.transform.position, transform.position, Time.deltaTime * 5f);
+            }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, magnetRadius);
     }
 }

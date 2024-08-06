@@ -10,6 +10,10 @@ TagManager:
   - Trash
   - Audio
   - SpeedBoost
+  - MagnetItem
+  - Magnet
+  - DoublePointsItem
+  - TimeFreeze
   layers:
   - Default
   - TransparentFX
