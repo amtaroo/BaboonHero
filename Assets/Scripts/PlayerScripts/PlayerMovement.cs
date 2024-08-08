@@ -46,13 +46,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("SpeedBoost"))
+        if (collision.gameObject.CompareTag("SpeedBoost")) //เพิ่มความเร็ว
         {
             StartCoroutine(SpeedBoost());
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Magnet"))
+        if (collision.gameObject.CompareTag("Magnet")) //แม่เหล็ก
         {
             if (magnetCoroutine != null)
             {
@@ -63,17 +63,16 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.CompareTag("DoublePointsItem"))
+        if (collision.CompareTag("DoublePointsItem")) //คะแนน x2
         {
             ChallengeModeManager.Instance.ActivateDoublePoints();
             Destroy(collision.gameObject);
         }
 
-
-        if (collision.CompareTag("TimeFreeze"))
+        if (collision.CompareTag("TimeFreeze")) //หยุดเวลา
         {
             Debug.Log("TimeFreeze item collected!");
-            TimeFreezeManager.Instance.FreezeTime(); // เรียกใช้งานฟังก์ชันหยุดเวลา
+            TimeFreezeManager.Instance.FreezeTime(); 
             Destroy(collision.gameObject);
         }
 
@@ -96,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         magnetCoroutine = null;
     }
 
-    private void AttractItems()
+    private void AttractItems()//ดูด item
     {
         Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, magnetRadius);
 

@@ -29,7 +29,7 @@ public class TrashBin : MonoBehaviour
         if (trashItem != null)
         {
             if (trashItem.trashType == acceptedTrashType)
-            {
+            {   //ขยะถูกประเภท
                 Destroy(other.gameObject);
                 StartCoroutine(ShowMessage("Correct!", 1f, "#FFFFFF"));
 
@@ -40,7 +40,7 @@ public class TrashBin : MonoBehaviour
                 
             }
             else
-            {
+            {   //ขยะผิดประเภท
                 Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {

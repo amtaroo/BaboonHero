@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverPanel;
     private bool isTimeFrozen = false;
 
-
     void Awake()
     {
         if (Instance == null)
@@ -29,7 +28,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         endGamePanel.SetActive(false);
+        collectedTrashItems = 0;
+
+        // ค้นหา GameObject "Trash"
+        trashItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("Trash"));
     }
+
     public void SetTimeFrozen(bool frozen)
     {
         isTimeFrozen = frozen;
@@ -43,24 +47,34 @@ public class GameManager : MonoBehaviour
     public void CollectTrash()
     {
         collectedTrashItems++;
+        Debug.Log("Collected Trash: " + collectedTrashItems);
+        Debug.Log("Total Trash: " + trashItems.Count);
+
         if (collectedTrashItems >= trashItems.Count)
         {
             EndGame();
         }
     }
+
     public void GameOver()
     {
-
-        Time.timeScale = 0; 
+        Time.timeScale = 0;
         GameOverPanel.SetActive(true);
     }
 
     void EndGame()
     {
+        Debug.Log("EndGame called");
         endGamePanel.SetActive(true);
+        
+        // หยุดเวลาและซ่อนตัวจับเวลา
+        SetTimeFrozen(true);
+        Timer.Instance.HideTimer();
+
         UnlockNewLevel();
-        UnityEngine.Debug.Log("Next Level Unlock");
+        Debug.Log("Next Level Unlock");
     }
+
     void UnlockNewLevel()
     {
         if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("UnlockedLevel"))

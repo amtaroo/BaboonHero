@@ -16,7 +16,8 @@ public class PickUp : MonoBehaviour
         {
             if (itemHolding)
             {
-                //dropSpot
+                // ทิ้งขยะ
+                PlayerDropTrash(itemHolding);
                 itemHolding.transform.position = dropSpot.position;
                 itemHolding.transform.parent = null;
                 if (itemHolding.GetComponent<Rigidbody2D>())
@@ -25,16 +26,37 @@ public class PickUp : MonoBehaviour
             }
             else
             {
+                // เก็บขยะ
                 Collider2D pickUpItem = Physics2D.OverlapCircle(transform.position, pickUpRadius, pickUpMask);
                 if (pickUpItem)
                 {
                     itemHolding = pickUpItem.gameObject;
+                    PlayerPickUpTrash(itemHolding);
                     itemHolding.transform.position = holdSpot.position;
                     itemHolding.transform.parent = transform;
                     if (itemHolding.GetComponent<Rigidbody2D>())
                         itemHolding.GetComponent<Rigidbody2D>().simulated = false;
                 }
             }
+        }
+    }
+    //เช็คplayer ถือขยะ
+    void PlayerPickUpTrash(GameObject trash)
+    {
+        TrashItem trashItem = trash.GetComponent<TrashItem>();
+        if (trashItem != null)
+        {
+            trashItem.isBeingHeldByPlayer = true;
+        }
+
+    }
+    //เช็คplayer ถือขยะ
+    void PlayerDropTrash(GameObject trash)
+    {
+        TrashItem trashItem = trash.GetComponent<TrashItem>();
+        if (trashItem != null)
+        {
+            trashItem.isBeingHeldByPlayer = false;
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 801839338584129727}
   - component: {fileID: 5036177818886002377}
   - component: {fileID: 3381618210577378946}
-  - component: {fileID: 7691464432613576998}
+  - component: {fileID: 3316043888265720420}
   m_Layer: 6
   m_Name: battery
   m_TagString: Trash
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7691464432613576998
+--- !u!114 &3316043888265720420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6640435379696278614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd0586f9c96af747b494d12ad082ffa, type: 3}
+  m_Script: {fileID: 11500000, guid: fe874c8ed18a88240a627adcfc2191ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   trashType: 2
+  isBeingHeldByPlayer: 0

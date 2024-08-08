@@ -10,12 +10,11 @@ public class Timer_Challenge : MonoBehaviour
     private float timeElapsed;
     public GameObject GameOverPanel;
 
-    // ตัวแปรเพื่อจัดการสถานะของ Time Freeze
     private bool isTimeFrozen = false;
 
     void Update()
     {
-        if (!isTimeFrozen) // ตรวจสอบว่าเวลาถูกหยุดหรือไม่
+        if (!isTimeFrozen)
         {
             if (timeRemaining > 0)
             {
@@ -51,7 +50,7 @@ public class Timer_Challenge : MonoBehaviour
         return timeElapsed;
     }
 
-    // ฟังก์ชันสำหรับการจัดการ Time Freeze
+    //Time Freeze
     public void SetTimeFrozen(bool frozen)
     {
         isTimeFrozen = frozen;

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelMenu : MonoBehaviour
 {
     public Button[] buttons; 
-    public GameObject[] levelButtons; // Array ของ GameObjects
+    public GameObject[] levelButtons;
 
     private void Awake()
     {

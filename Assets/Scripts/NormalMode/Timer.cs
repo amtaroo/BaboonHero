@@ -5,6 +5,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer Instance { get; private set; }
     public float timeRemaining = 60f;
     public TextMeshProUGUI timerText;
     private float timeElapsed;
@@ -12,9 +13,21 @@ public class Timer : MonoBehaviour
 
     private bool isTimeFrozen;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
-        if (!GameManager.Instance.IsTimeFrozen()) // ตรวจสอบว่าเวลาถูกหยุดหรือไม่
+        if (!GameManager.Instance.IsTimeFrozen()) // check เวลาถูกหยุด
         {
             if (timeRemaining > 0)
             {
@@ -29,8 +42,14 @@ public class Timer : MonoBehaviour
                     Debug.Log("Time's up!");
                     GameOverPanel.SetActive(true);
                 }
+                else
+                {
+                    // ซ่อนตัวจับเวลา
+                    timerText.gameObject.SetActive(false);
+                }
             }
         }
+
     }
 
     void DisplayTime(float timeToDisplay)
@@ -44,6 +63,11 @@ public class Timer : MonoBehaviour
     public void SetTimeFrozen(bool isFrozen)
     {
         isTimeFrozen = isFrozen;
+    }
+
+    public void HideTimer()
+    {
+        timerText.gameObject.SetActive(false);
     }
 
     public float GetTimeRemaining()

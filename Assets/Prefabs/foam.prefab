@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6854445441698079991}
   - component: {fileID: 6467730587036519260}
   - component: {fileID: 3390341948545396992}
-  - component: {fileID: 4631144149310055726}
+  - component: {fileID: 1658017265654069670}
   m_Layer: 6
   m_Name: foam
   m_TagString: Trash
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4631144149310055726
+--- !u!114 &1658017265654069670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9074994356743497723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd0586f9c96af747b494d12ad082ffa, type: 3}
+  m_Script: {fileID: 11500000, guid: fe874c8ed18a88240a627adcfc2191ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   trashType: 3
+  isBeingHeldByPlayer: 0

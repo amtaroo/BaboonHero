@@ -3,30 +3,31 @@ using UnityEngine.UI;
 
 public class RobotController : MonoBehaviour
 {
-    public Transform[] trashBins; // Array ของถังขยะ
-    private Transform targetTrash; // เป้าหมายวัตถุ Trash
-    private TrashBin currentBin; // ถังขยะที่กำลังไป
-    private TrashType currentTrashType; // ประเภทของขยะที่ถืออยู่
-    public float speed = 2.0f; // ความเร็วของลิง
-    private bool carryingTrash = false; // สถานะว่าลิงกำลังถือขยะอยู่หรือไม่
-    public GameObject endGamePanel; // Panel สำหรับแสดงเมื่อเกมจบ
+    public Transform[] trashBins; 
+    private Transform targetTrash;
+    private TrashBin currentBin;
+    private TrashType currentTrashType;
+    public float speed = 2.0f; 
+    private bool carryingTrash = false; 
+    public GameObject endGamePanel; 
 
     private int totalTrashCount;
     private int collectedTrashCount;
+    public Transform holdSpot;
+    private GameObject itemHolding;
 
     void Start()
     {
         totalTrashCount = GameObject.FindGameObjectsWithTag("Trash").Length;
         collectedTrashCount = 0;
         FindNextTrash();
-        endGamePanel.SetActive(false); // ซ่อน End Game panel ตอนเริ่มเกม
+        endGamePanel.SetActive(false);
     }
 
     void Update()
     {
         if (carryingTrash && currentBin != null)
         {
-            // ถ้าลิงกำลังถือขยะ ให้เดินไปที่ถังขยะที่ถูกประเภท
             MoveTowardsTarget(currentBin.transform.position);
 
             if (Vector2.Distance(transform.position, currentBin.transform.position) < 0.1f)
@@ -36,12 +37,21 @@ public class RobotController : MonoBehaviour
         }
         else if (targetTrash != null)
         {
-            // ถ้าลิงยังไม่ได้ถือขยะ ให้เดินไปที่ขยะ
-            MoveTowardsTarget(targetTrash.position);
+            TrashItem targetTrashItem = targetTrash.GetComponent<TrashItem>();
 
-            if (Vector2.Distance(transform.position, targetTrash.position) < 0.1f)
+            // ขยะยัง active อยู่และ player ไม่ได้ถือ
+            if (!targetTrash.gameObject.activeInHierarchy || targetTrashItem.isBeingHeldByPlayer)
             {
-                PickUpTrash();
+                FindNextTrash();
+            }
+            else
+            {
+                MoveTowardsTarget(targetTrash.position);
+
+                if (Vector2.Distance(transform.position, targetTrash.position) < 0.1f)
+                {
+                    PickUpTrash();
+                }
             }
         }
     }
@@ -49,22 +59,28 @@ public class RobotController : MonoBehaviour
     void FindNextTrash()
     {
         GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("Trash");
-        float closestDistance = Mathf.Infinity; // เริ่มต้นด้วยค่าระยะทางที่มากที่สุด
+        float closestDistance = Mathf.Infinity;
         Transform closestTrash = null;
 
         foreach (GameObject trash in trashObjects)
         {
-            float distance = Vector2.Distance(transform.position, trash.transform.position);
-            if (distance < closestDistance)
+            TrashItem targetTrashItem = trash.GetComponent<TrashItem>();
+
+            // ตรวจสอบว่า player ไม่ได้ถือขยะ
+            if (!targetTrashItem.isBeingHeldByPlayer)
             {
-                closestDistance = distance;
-                closestTrash = trash.transform;
+                float distance = Vector2.Distance(transform.position, trash.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTrash = trash.transform;
+                }
             }
         }
 
         if (closestTrash != null)
         {
-            targetTrash = closestTrash; // กำหนดเป้าหมายเป็นขยะที่ใกล้ที่สุด
+            targetTrash = closestTrash;
             currentTrashType = targetTrash.GetComponent<TrashItem>().trashType;
             FindTrashBinForType(currentTrashType);
         }
@@ -74,7 +90,6 @@ public class RobotController : MonoBehaviour
             CheckGameEnd();
         }
     }
-
 
     void FindTrashBinForType(TrashType trashType)
     {
@@ -92,9 +107,15 @@ public class RobotController : MonoBehaviour
 
     void PickUpTrash()
     {
-        carryingTrash = true; // กำหนดสถานะว่ากำลังถือขยะ
-        targetTrash.gameObject.SetActive(false); // ซ่อนขยะไว้ (จำลองการถือ)
-        collectedTrashCount++; // เพิ่มจำนวนขยะที่เก็บได้
+        carryingTrash = true;
+        itemHolding = targetTrash.gameObject;
+        itemHolding.SetActive(true);
+
+        itemHolding.transform.position = holdSpot.position;
+        itemHolding.transform.parent = transform;
+
+        collectedTrashCount++;
+
         targetTrash = null;
         GoToTrashBin();
     }
@@ -103,15 +124,14 @@ public class RobotController : MonoBehaviour
     {
         if (currentBin != null)
         {
-            MoveTowardsTarget(currentBin.transform.position); // นำทางไปยังถังขยะที่ถูกประเภท
+            MoveTowardsTarget(currentBin.transform.position);
         }
     }
 
     void DropTrash()
     {
-        carryingTrash = false; // ลิงไม่ได้ถือขยะแล้ว
+        carryingTrash = false;
         currentBin = null;
-        GameManager.Instance.CollectTrash();
         FindNextTrash();
     }
 
@@ -125,7 +145,7 @@ public class RobotController : MonoBehaviour
     {
         if (collectedTrashCount >= totalTrashCount)
         {
-             // แสดง End Game panel
+            //    endGamePanel.SetActive(true);
         }
     }
 }
