@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelMenu : MonoBehaviour
 {
-    public Button[] buttons; 
+    public Button[] buttons;
     public GameObject[] levelButtons;
 
     private void Awake()
@@ -20,12 +20,12 @@ public class LevelMenu : MonoBehaviour
             buttons[i].interactable = false;
         }
 
-        for (int i = 0; i < unlockedLevel; i++)
+
+        int maxUnlockableIndex = Mathf.Min(unlockedLevel, buttons.Length);
+
+        for (int i = 0; i < maxUnlockableIndex; i++)
         {
-            if (i < buttons.Length) 
-            {
-                buttons[i].interactable = true;
-            }
+            buttons[i].interactable = true;
         }
     }
 
@@ -55,4 +55,5 @@ public class LevelMenu : MonoBehaviour
 
         buttons = buttonList.ToArray();
     }
+
 }

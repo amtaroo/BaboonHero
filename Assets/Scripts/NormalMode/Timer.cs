@@ -41,6 +41,7 @@ public class Timer : MonoBehaviour
                 {
                     Debug.Log("Time's up!");
                     GameOverPanel.SetActive(true);
+                    HideTimer();
                 }
                 else
                 {

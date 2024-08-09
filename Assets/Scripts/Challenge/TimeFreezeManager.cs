@@ -25,7 +25,7 @@ public class TimeFreezeManager : MonoBehaviour
 
     private IEnumerator FreezeTimeCoroutine()
     {
-        // หยุดการเคลื่อนไหวของวัตถุทั้งหมด ยกเว้นผู้เล่น
+        // หยุดวัตถุทั้งหมด ยกเว้นผู้เล่น
         FreezeAllObjectsExceptPlayer(true);
 
         // Challenge แจ้งว่าเวลาใน Timer_Challenge ถูกหยุด
@@ -43,13 +43,13 @@ public class TimeFreezeManager : MonoBehaviour
         // คืนค่าการเคลื่อนไหวของวัตถุทั้งหมด
         FreezeAllObjectsExceptPlayer(false);
 
-        // แจ้งว่าเวลาใน Timer_Challenge กลับมาทำงาน
+        // Challenge แจ้งว่าเวลาใน Timer_Challenge กลับมาทำงาน
         foreach (var timer in timers)
         {
             timer.SetTimeFrozen(false);
         }
 
-        // อัพเดทสถานะการหยุดเวลาใน GameManager
+        // Normal อัพเดทการหยุดเวลาใน GameManager
         GameManager.Instance.SetTimeFrozen(false);
     }
 
@@ -61,7 +61,7 @@ public class TimeFreezeManager : MonoBehaviour
 
         foreach (Rigidbody2D rb in allRigidbodies)
         {
-            // ตรวจสอบว่าเป็นศัตรูหรือวัตถุเคลื่อนที่ที่ไม่ใช่ผู้เล่น
+
             if (!rb.CompareTag("Player"))
             {
                 if (isFrozen)
@@ -78,14 +78,19 @@ public class TimeFreezeManager : MonoBehaviour
 
         foreach (Animator anim in allAnimators)
         {
-            // ตรวจสอบว่าเป็นศัตรูหรือวัตถุเคลื่อนที่ที่ไม่ใช่ผู้เล่น
+
             if (!anim.CompareTag("Player"))
             {
                 anim.enabled = !isFrozen;
             }
         }
 
-        // ลองเพิ่มการจัดการสำหรับศัตรูที่อาจไม่ใช้ Rigidbody2D หรือ Animator
+        RobotController[] allRobots = FindObjectsOfType<RobotController>();
+        foreach (RobotController robot in allRobots)
+        {
+            robot.enabled = !isFrozen;
+        }
+
         Hunter[] allHunters = FindObjectsOfType<Hunter>();
         foreach (Hunter hunter in allHunters)
         {
