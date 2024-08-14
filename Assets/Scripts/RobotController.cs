@@ -1,10 +1,10 @@
-
-
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class RobotController : MonoBehaviour
 {
+    NavMeshAgent robot;
     public Transform[] trashBins;
     private Transform targetTrash;
     private TrashBin currentBin;
@@ -21,6 +21,18 @@ public class RobotController : MonoBehaviour
     private Animator animator;
     private Vector3 lastPosition;
 
+    // gift
+    private bool hasGift = false;
+    private float helpDuration = 30.0f;
+    private float helpTimer = 0.0f;
+
+    void Awake()
+    {
+        robot = GetComponent<NavMeshAgent>();
+        robot.updateRotation = false;
+        robot.updateUpAxis = false;
+    }
+
     void Start()
     {
         totalTrashCount = GameObject.FindGameObjectsWithTag("Trash").Length;
@@ -34,9 +46,29 @@ public class RobotController : MonoBehaviour
 
     void Update()
     {
+        if (!hasGift)
+        {
+
+            CheckForGift();
+            return;
+        }
+
+        helpTimer += Time.deltaTime;
+        if (helpTimer > helpDuration)
+        {
+
+            StopHelping();
+            return;
+        }
+
+        if (targetTrash == null)
+        {
+            FindNextTrash();
+            return;
+        }
         if (carryingTrash && currentBin != null)
         {
-            MoveTowardsTarget(currentBin.transform.position);
+            robot.SetDestination(currentBin.transform.position);
 
             if (Vector2.Distance(transform.position, currentBin.transform.position) < 0.1f)
             {
@@ -53,7 +85,7 @@ public class RobotController : MonoBehaviour
             }
             else
             {
-                MoveTowardsTarget(targetTrash.position);
+                robot.SetDestination(targetTrash.position);
 
                 if (Vector2.Distance(transform.position, targetTrash.position) < 0.1f)
                 {
@@ -63,6 +95,47 @@ public class RobotController : MonoBehaviour
         }
 
         UpdateAnimation();
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("gift"))
+        {
+            Debug.Log("Robot received the gift!");
+            hasGift = true;
+            helpTimer = 0.0f;
+            other.gameObject.SetActive(false);
+        }
+    }
+
+
+
+    void CheckForGift()
+    {
+
+        GameObject gift = GameObject.FindGameObjectWithTag("gift");
+        if (gift != null && Vector2.Distance(transform.position, gift.transform.position) < 0.1f)
+        {
+            hasGift = true;
+            helpTimer = 0.0f;
+            gift.SetActive(false);  
+        }
+    }
+
+    void StopHelping()
+    {
+        hasGift = false;
+        targetTrash = null;
+        carryingTrash = false;
+        currentBin = null;
+
+    }
+
+    void GoToTrashBin()
+    {
+        if (currentBin != null)
+        {
+            robot.SetDestination(currentBin.transform.position);
+        }
     }
 
     void FindNextTrash()
@@ -75,7 +148,7 @@ public class RobotController : MonoBehaviour
         {
             TrashItem targetTrashItem = trash.GetComponent<TrashItem>();
 
-            if (!targetTrashItem.isBeingHeldByPlayer)
+            if (!targetTrashItem.isBeingHeldByPlayer && trash.activeInHierarchy)
             {
                 float distance = Vector2.Distance(transform.position, trash.transform.position);
                 if (distance < closestDistance)
@@ -128,16 +201,13 @@ public class RobotController : MonoBehaviour
         GoToTrashBin();
     }
 
-    void GoToTrashBin()
-    {
-        if (currentBin != null)
-        {
-            MoveTowardsTarget(currentBin.transform.position);
-        }
-    }
-
     void DropTrash()
     {
+        if (itemHolding != null)
+        {
+            itemHolding.SetActive(false);
+            itemHolding.transform.parent = null;
+        }
         carryingTrash = false;
         currentBin = null;
         FindNextTrash();
@@ -157,25 +227,32 @@ public class RobotController : MonoBehaviour
         }
     }
 
+
+
     void UpdateAnimation()
     {
         if (animator != null)
         {
             Vector3 movementDirection = transform.position - lastPosition;
 
-            if (movementDirection != Vector3.zero)
+            float movementThreshold = 0.01f;
+
+            if (movementDirection.sqrMagnitude > movementThreshold * movementThreshold)
             {
                 animator.SetFloat("MoveX", movementDirection.x);
                 animator.SetFloat("MoveY", movementDirection.y);
+                animator.SetBool("isMoving", false);
             }
             else
             {
                 animator.SetFloat("MoveX", 0);
                 animator.SetFloat("MoveY", 0);
+                animator.SetBool("isMoving", true); // เล่น animation idle
             }
 
             lastPosition = transform.position;
         }
     }
-}
 
+
+}
