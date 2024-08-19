@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 2
   acceptedTrashType: 2
   warningText: {fileID: 1692565712}
   playerTransform: {fileID: 2116059662}
@@ -43352,6 +43352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonkeyRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 6493456123721249580, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7427563473729059453, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -44649,6 +44653,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1305889571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7168059588517886572, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_Name
+      value: gift
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
 --- !u!1 &1308950639
 GameObject:
   m_ObjectHideFlags: 0
@@ -48424,7 +48485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 1
   acceptedTrashType: 1
   warningText: {fileID: 1520009200}
   playerTransform: {fileID: 2116059662}
@@ -49117,7 +49178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 3
   acceptedTrashType: 3
   warningText: {fileID: 616512827}
   playerTransform: {fileID: 2116059662}
@@ -54169,3 +54230,4 @@ SceneRoots:
   - {fileID: 2062493040}
   - {fileID: 167516128}
   - {fileID: 1203849645}
+  - {fileID: 1305889571}

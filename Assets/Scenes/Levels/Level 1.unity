@@ -835,7 +835,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 257c33d14b983d542a8db61bd3f082fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3414,7 +3414,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d9a611275b9752d48890be24f7002f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5195,7 +5195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b4dd682fa2d0e9b4e8036f3057ad2841, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6324,7 +6324,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 8cddebee892a1b841a081c4e6dfb5b2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -15825,6 +15825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeFreeze
       objectReference: {fileID: 0}
+    - target: {fileID: 3679072100420840993, guid: f8d4d4e84e0f86d46bd84e3b718574b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17749,7 +17753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493456123721249580, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
       propertyPath: endGamePanel
@@ -17824,32 +17828,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1857791892466289685, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164794614232742516, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: hiSound
       value: 
       objectReference: {fileID: 8300000, guid: b1b4151649b226840bdcd3500164b755, type: 3}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.size
-      value: 6
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: "Welcome, Baboon Hero! I\u2019ve heard you\u2019re great at collecting
+        trash."
       objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.data[1]
-      value: In this game, we have 4 types of bins you need to know...
+      value: Can you help us here?
       objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.data[2]
-      value: Organic Waste Bin (Green) - For waste that can decompose naturally,
-        such as food scraps, leaves, and fruit peels.
+      value: Don't forget to sort your trash before throwing it away.
       objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.data[3]
-      value: Recyclable Waste Bin (Blue) - For trash that can be recycled, such as
-        plastic bottles, paper, and aluminum cans.
+      value: Can you help us here?
       objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.data[4]
-      value: General Waste Bin (Yellow) - For trash that cannot be easily recycled
-        or decomposed, such as plastic bags, straws, and mixed materials.
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: dialogue.Array.data[5]
@@ -17860,6 +17874,78 @@ PrefabInstance:
       propertyPath: dialogue.Array.data[6]
       value: Hazardous Waste Bin (Red) - For waste that poses a risk to the environment
         and health, such as batteries, light bulbs, and chemicals.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseButtons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].responses.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].showResponsesAtIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].responses.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].showResponsesAtIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].responses.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].responses.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].responses.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].responses.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].nextDialogueIndex.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].nextDialogueIndex.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].nextDialogueIndex.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[0].nextDialogueIndex.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].nextDialogueIndex.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: responseOptions.Array.data[1].nextDialogueIndex.Array.data[1]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4794039077183661306, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_Name

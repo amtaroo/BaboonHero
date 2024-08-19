@@ -2587,7 +2587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 2
   acceptedTrashType: 2
   warningText: {fileID: 1692565712}
   playerTransform: {fileID: 2116059662}
@@ -27166,6 +27166,63 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!1001 &461256795
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7168059588517886572, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_Name
+      value: gift
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908600326601095707, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb0f3ecdbb56c014eadddfa084edad58, type: 3}
 --- !u!1 &465801775
 GameObject:
   m_ObjectHideFlags: 0
@@ -56052,7 +56109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 1
   acceptedTrashType: 1
   warningText: {fileID: 1520009200}
   playerTransform: {fileID: 2116059662}
@@ -56153,6 +56210,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1600025890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.5505085
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.305611
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408250417889409639, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493456123721249580, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: m_Name
+      value: MonkeyRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: endGamePanel
+      value: 
+      objectReference: {fileID: 2132718251}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: trashBins.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: trashBins.Array.data[0]
+      value: 
+      objectReference: {fileID: 1584885021}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: trashBins.Array.data[1]
+      value: 
+      objectReference: {fileID: 1664788887}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: trashBins.Array.data[2]
+      value: 
+      objectReference: {fileID: 1645435821}
+    - target: {fileID: 8816072875393241724, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
+      propertyPath: trashBins.Array.data[3]
+      value: 
+      objectReference: {fileID: 77118599}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad08cfcb6e0952642a5b00c45b2c3375, type: 3}
 --- !u!1 &1625091995
 GameObject:
   m_ObjectHideFlags: 0
@@ -56342,7 +56480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 3
   acceptedTrashType: 3
   warningText: {fileID: 616512827}
   playerTransform: {fileID: 2116059662}
@@ -57958,6 +58096,19 @@ PrefabInstance:
     - target: {fileID: 1790412150409813681, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: This sea is very beautiful, but the leftover trash is diminishing its
+        splendor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Can you help restore it to its former glory?
       objectReference: {fileID: 0}
     - target: {fileID: 4794039077183661306, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_Name
@@ -68606,3 +68757,5 @@ SceneRoots:
   - {fileID: 1209540790}
   - {fileID: 1540319284}
   - {fileID: 298119489}
+  - {fileID: 461256795}
+  - {fileID: 1600025890}

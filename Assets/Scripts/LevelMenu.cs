@@ -14,20 +14,23 @@ public class LevelMenu : MonoBehaviour
         ButtonsToArray();
 
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+        //    Debug.Log("Unlocked Level: " + unlockedLevel);
 
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = false;
         }
 
-
         int maxUnlockableIndex = Mathf.Min(unlockedLevel, buttons.Length);
 
         for (int i = 0; i < maxUnlockableIndex; i++)
         {
             buttons[i].interactable = true;
+
         }
     }
+
+
 
     public void OpenLevel(int levelId)
     {
@@ -41,19 +44,28 @@ public class LevelMenu : MonoBehaviour
 
         foreach (GameObject levelButton in levelButtons)
         {
-            int childCount = levelButton.transform.childCount;
-
-            for (int i = 0; i < childCount; i++)
+            if (levelButton != null)
             {
-                Button btn = levelButton.transform.GetChild(i).gameObject.GetComponent<Button>();
+                Button btn = levelButton.GetComponentInChildren<Button>();
                 if (btn != null)
                 {
                     buttonList.Add(btn);
                 }
+                else
+                {
+                    Debug.LogWarning("No Button component found in " + levelButton.name);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Level Button GameObject is null.");
             }
         }
 
         buttons = buttonList.ToArray();
+        Debug.Log("Total buttons after fix: " + buttons.Length);
     }
+
+
 
 }

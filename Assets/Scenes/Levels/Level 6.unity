@@ -42094,6 +42094,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: This desert is filled with discarded trash.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Help me clean it up, and soon we'll uncover the hidden treasures!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: treasures, treasures!!
+      objectReference: {fileID: 0}
     - target: {fileID: 4794039077183661306, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_Name
       value: NPC

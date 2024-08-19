@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 2
   acceptedTrashType: 2
   warningText: {fileID: 1692565712}
   playerTransform: {fileID: 2116059662}
@@ -43184,75 +43184,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 38.91, y: 0.82}
   m_EdgeRadius: 0
---- !u!1001 &1209540790
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3920040581023912209, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2116059662}
-    - target: {fileID: 3920040581023912209, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: GameOverPanel
-      value: 
-      objectReference: {fileID: 1046236011}
-    - target: {fileID: 3920040581023912209, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: chaseDistance
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735586092435959271, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_Name
-      value: Hunter (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
 --- !u!1 &1212379170
 GameObject:
   m_ObjectHideFlags: 0
@@ -46507,7 +46438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 1
   acceptedTrashType: 1
   warningText: {fileID: 1520009200}
   playerTransform: {fileID: 2116059662}
@@ -46731,7 +46662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db0ae3329cb809469d52212ddf7089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashType: 0
+  trashType: 3
   acceptedTrashType: 3
   warningText: {fileID: 616512827}
   playerTransform: {fileID: 2116059662}
@@ -47565,6 +47496,14 @@ PrefabInstance:
     - target: {fileID: 1790412150409813681, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179871353807239091, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: I hear the hunter is nearby. Finish your work quickly and come back!
       objectReference: {fileID: 0}
     - target: {fileID: 4794039077183661306, guid: 8ec36a67e152d244f8f33590c5a2b8bb, type: 3}
       propertyPath: m_Name
@@ -49974,11 +49913,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -10.45
       objectReference: {fileID: 0}
     - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.2
+      value: -14.94
       objectReference: {fileID: 0}
     - target: {fileID: 7996740312205770011, guid: 361c3edb01eda0e4eae64fcdf2293b30, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50509,4 +50448,3 @@ SceneRoots:
   - {fileID: 1028943219}
   - {fileID: 2062493040}
   - {fileID: 60584251}
-  - {fileID: 1209540790}

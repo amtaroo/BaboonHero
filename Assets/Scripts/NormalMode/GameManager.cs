@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         endGamePanel.SetActive(false);
         collectedTrashItems = 0;
 
-        // ค้นหา GameObject "Trash"
         trashItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("Trash"));
     }
 
