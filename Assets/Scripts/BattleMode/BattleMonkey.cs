@@ -6,7 +6,7 @@ public class BattleMonkey : MonoBehaviour
     NavMeshAgent robot;
     public Transform[] trashBins;
     private Transform targetTrash;
-    private Transform currentBin; // Changed from TrashBin to Transform
+    private Transform currentBin;
     private TrashType currentTrashType;
     public float speed = 2.0f;
     private bool carryingTrash = false;
@@ -117,22 +117,7 @@ public class BattleMonkey : MonoBehaviour
         }
         currentBin = null;
     }
-    /*
-        void PickUpTrash()
-        {
-            Debug.Log("PickUpTrash");
-            carryingTrash = true;
-            itemHolding = targetTrash.gameObject;
-            itemHolding.SetActive(true);
 
-            itemHolding.transform.position = holdSpot.position;
-            itemHolding.transform.parent = transform;
-
-            BattleModeManager.Instance.CollectTrash(true, true);
-
-            targetTrash = null;
-            GoToTrashBin();
-        }*/
     void PickUpTrash()
     {
         Debug.Log("PickUpTrash");
@@ -143,7 +128,8 @@ public class BattleMonkey : MonoBehaviour
         itemHolding.transform.position = holdSpot.position;
         itemHolding.transform.parent = transform;
 
-        // ไม่ต้องเพิ่มคะแนนที่นี่ ให้เพิ่มคะแนนเมื่อทิ้งขยะสำเร็จเท่านั้น
+        //BattleModeManager.Instance.CollectTrash(true, true);
+
         targetTrash = null;
         GoToTrashBin();
     }
@@ -166,8 +152,8 @@ public class BattleMonkey : MonoBehaviour
         itemHolding.SetActive(false);
         itemHolding.transform.parent = null;
 
-        // ให้ลิงได้คะแนนเมื่อทิ้งขยะ
-        BattleModeManager.Instance.CollectTrash(true, true); // isMonkey = true
+        // ให้คะแนนลิง
+        BattleModeManager.Instance.CollectTrash(true, true);
     }
     carryingTrash = false;
     currentBin = null;
@@ -194,7 +180,7 @@ public class BattleMonkey : MonoBehaviour
             {
                 animator.SetFloat("MoveX", 0);
                 animator.SetFloat("MoveY", 0);
-                animator.SetBool("isMoving", false); // Play idle animation
+                animator.SetBool("isMoving", false); 
             }
 
             lastPosition = transform.position;

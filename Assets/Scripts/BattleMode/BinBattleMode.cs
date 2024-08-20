@@ -24,17 +24,16 @@ public class BinBattleMode : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         TrashItem trashItem = other.GetComponent<TrashItem>();
-        if (trashItem != null && !trashItem.isHeld) // ตรวจสอบว่าไม่ได้ถูกถืออยู่
+        if (trashItem != null && !trashItem.isHeld) // ขยะไม่ได้ถูกถืออยู่
         {
-            // Check if the trash type matches the accepted type for this bin
             if (trashItem.trashType == acceptedTrashType)
             {
-                // Correct trash type
+                // ถูก
                 HandleCorrectTrash(other.gameObject, trashItem);
             }
             else
             {
-                // Incorrect trash type
+                // ผิด
                 HandleIncorrectTrash(other.gameObject);
             }
         }

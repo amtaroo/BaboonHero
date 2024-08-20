@@ -12,12 +12,12 @@ public class CompetitionModeManager : MonoBehaviour
     public float gameDuration = 60f;
     private float elapsedTime = 0f;
     private List<Transform> occupiedSpawnPoints = new List<Transform>();
-    
+
     public int playerScore = 0;
     public int monkeyScore = 0;
     public TextMeshProUGUI playerScoreText;
     public TextMeshProUGUI monkeyScoreText;
-    public float competitionDuration = 60f; // ระยะเวลาการแข่งขัน 60 วินาที
+    public float competitionDuration = 60f;
     private float timeRemaining;
     public TextMeshProUGUI timerText;
     public GameObject resultPanel;

@@ -11,16 +11,14 @@ public class TimerBattle : MonoBehaviour
     private float timeElapsed;
 
 
-    public Button startButton; // Reference to the Start Button
+    public Button startButton; 
 
-    private bool isTimeFrozen = true; // Initially frozen until Start is pressed
+    private bool isTimeFrozen = true;
 
     void Start()
     {
-        // Initially hide the timer text
         timerText.gameObject.SetActive(false);
 
-        // Add a listener to the start button
         startButton.onClick.AddListener(OnStartButtonClicked);
     }
 
@@ -39,7 +37,7 @@ public class TimerBattle : MonoBehaviour
                 if (!ChallengeModeManager.Instance.endGamePanel.activeSelf)
                 {
                     Debug.Log("Time's up!");
-                    // Trigger the game over panel or other end-game logic
+
 
                 }
             }
@@ -64,17 +62,16 @@ public class TimerBattle : MonoBehaviour
         return timeElapsed;
     }
 
-    // Time Freeze control
+
     public void SetTimeFrozen(bool frozen)
     {
         isTimeFrozen = frozen;
     }
 
-    // Called when the start button is clicked
     void OnStartButtonClicked()
     {
-        isTimeFrozen = false; // Unfreeze the timer to start counting down
-        timerText.gameObject.SetActive(true); // Show the timer text
-        startButton.gameObject.SetActive(false); // Hide the start button after it's pressed
+        isTimeFrozen = false; 
+        timerText.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(false); 
     }
 }

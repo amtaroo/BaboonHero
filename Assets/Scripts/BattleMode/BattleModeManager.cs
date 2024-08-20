@@ -20,8 +20,8 @@ public class BattleModeManager : MonoBehaviour
     public TextMeshProUGUI finalMonkeyScoreText;
     public GameObject endGamePanel;
 
-    public GameObject startPanel; // Add reference to the start panel
-    public Button startButton; // Add reference to the start button
+    public GameObject startPanel; 
+    public Button startButton; 
 
     public bool isDoublePointsActive = false;
     public float doublePointsDuration = 10f;
@@ -42,17 +42,14 @@ public class BattleModeManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Initially show the start panel and hide the end game panel
         startPanel.SetActive(true);
         endGamePanel.SetActive(false);
 
-        // Add listener to the start button
         startButton.onClick.AddListener(OnStartButtonClicked);
     }
 
     void OnStartButtonClicked()
     {
-        // Hide the start panel and start the game
         startPanel.SetActive(false);
         UpdateScoreText();
         StartCoroutine(SpawnTrashItems());
