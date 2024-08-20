@@ -6,7 +6,7 @@ public class BinBattleMode : MonoBehaviour
 {
     public TrashType acceptedTrashType;
     public TextMeshProUGUI warningText;
-    public Transform playerTransform; // This can be set to either the player or monkey
+    public Transform playerTransform;
     public bool isMonkey;
 
     private AudioManager audioManager;
@@ -21,10 +21,10 @@ public class BinBattleMode : MonoBehaviour
         warningText.gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         TrashItem trashItem = other.GetComponent<TrashItem>();
-        if (trashItem != null)
+        if (trashItem != null && !trashItem.isHeld) // ตรวจสอบว่าไม่ได้ถูกถืออยู่
         {
             // Check if the trash type matches the accepted type for this bin
             if (trashItem.trashType == acceptedTrashType)

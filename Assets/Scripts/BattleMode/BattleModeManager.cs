@@ -14,15 +14,20 @@ public class BattleModeManager : MonoBehaviour
     public float gameDuration = 60f;
     private float elapsedTime = 0f;
 
-    public int playerScore = 0;
-    public int monkeyScore = 0;
     public TextMeshProUGUI playerScoreText;
     public TextMeshProUGUI monkeyScoreText;
     public TextMeshProUGUI finalPlayerScoreText;
     public TextMeshProUGUI finalMonkeyScoreText;
+    public GameObject endGamePanel;
+
+    public GameObject startPanel; // Add reference to the start panel
+    public Button startButton; // Add reference to the start button
 
     public bool isDoublePointsActive = false;
     public float doublePointsDuration = 10f;
+
+    public PlayerScoreManager playerScoreManager;
+    public MonkeyScoreManager monkeyScoreManager;
 
     private List<Transform> occupiedSpawnPoints = new List<Transform>();
 
@@ -36,10 +41,19 @@ public class BattleModeManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Initially show the start panel and hide the end game panel
+        startPanel.SetActive(true);
+        endGamePanel.SetActive(false);
+
+        // Add listener to the start button
+        startButton.onClick.AddListener(OnStartButtonClicked);
     }
 
-    void Start()
+    void OnStartButtonClicked()
     {
+        // Hide the start panel and start the game
+        startPanel.SetActive(false);
         UpdateScoreText();
         StartCoroutine(SpawnTrashItems());
         StartCoroutine(GameTimer());
@@ -90,42 +104,16 @@ public class BattleModeManager : MonoBehaviour
     {
         int points = correctDisposal ? 10 : -20;
 
-        if (isDoublePointsActive)
-        {
-            points *= 2;
-        }
-
         if (isMonkey)
         {
-            monkeyScore += points;
+            monkeyScoreManager.AddScore(points);
         }
         else
         {
-            playerScore += points;
+            playerScoreManager.AddScore(points);
         }
 
         UpdateScoreText();
-    }
-
-    public void ActivateDoublePoints()
-    {
-        if (!isDoublePointsActive)
-        {
-            isDoublePointsActive = true;
-            StartCoroutine(DoublePointsTimer());
-        }
-    }
-
-    private IEnumerator DoublePointsTimer()
-    {
-        yield return new WaitForSeconds(doublePointsDuration);
-        isDoublePointsActive = false;
-    }
-
-    void UpdateScoreText()
-    {
-        playerScoreText.text = "Player Score : " + playerScore;
-        monkeyScoreText.text = "Monkey Score : " + monkeyScore;
     }
 
     IEnumerator GameTimer()
@@ -138,8 +126,17 @@ public class BattleModeManager : MonoBehaviour
         EndGame();
     }
 
+    void UpdateScoreText()
+    {
+        playerScoreText.text = "Player Score : " + playerScoreManager.GetScore();
+        monkeyScoreText.text = "Monkey Score : " + monkeyScoreManager.GetScore();
+    }
+
     void EndGame()
     {
-        // ปิดการทำงานทั้งหมดในเกมและแสดงผลคะแนน
+        finalPlayerScoreText.text = "Player Final Score: " + playerScoreManager.GetScore();
+        finalMonkeyScoreText.text = "Monkey Final Score: " + monkeyScoreManager.GetScore();
+
+        endGamePanel.SetActive(true);
     }
 }

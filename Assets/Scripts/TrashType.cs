@@ -12,5 +12,6 @@ public enum TrashType
 public class TrashItem : MonoBehaviour
 {
     public TrashType trashType;
+    public bool isHeld = false;
     public bool isBeingHeldByPlayer = false; //  check Playerถือขยะ
 }

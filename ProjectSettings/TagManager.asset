@@ -15,6 +15,7 @@ TagManager:
   - DoublePointsItem
   - TimeFreeze
   - gift
+  - Monkey
   layers:
   - Default
   - TransparentFX

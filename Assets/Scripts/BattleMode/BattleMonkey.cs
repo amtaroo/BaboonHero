@@ -117,7 +117,22 @@ public class BattleMonkey : MonoBehaviour
         }
         currentBin = null;
     }
+    /*
+        void PickUpTrash()
+        {
+            Debug.Log("PickUpTrash");
+            carryingTrash = true;
+            itemHolding = targetTrash.gameObject;
+            itemHolding.SetActive(true);
 
+            itemHolding.transform.position = holdSpot.position;
+            itemHolding.transform.parent = transform;
+
+            BattleModeManager.Instance.CollectTrash(true, true);
+
+            targetTrash = null;
+            GoToTrashBin();
+        }*/
     void PickUpTrash()
     {
         Debug.Log("PickUpTrash");
@@ -128,11 +143,11 @@ public class BattleMonkey : MonoBehaviour
         itemHolding.transform.position = holdSpot.position;
         itemHolding.transform.parent = transform;
 
-        BattleModeManager.Instance.CollectTrash(true, true);
-
+        // ไม่ต้องเพิ่มคะแนนที่นี่ ให้เพิ่มคะแนนเมื่อทิ้งขยะสำเร็จเท่านั้น
         targetTrash = null;
         GoToTrashBin();
     }
+
 
     void GoToTrashBin()
     {
@@ -144,17 +159,22 @@ public class BattleMonkey : MonoBehaviour
     }
 
     void DropTrash()
+{
+    Debug.Log("DropTrash");
+    if (itemHolding != null)
     {
-        Debug.Log("DropTrash");
-        if (itemHolding != null)
-        {
-            itemHolding.SetActive(false);
-            itemHolding.transform.parent = null;
-        }
-        carryingTrash = false;
-        currentBin = null;
-        FindNextTrash();
+        itemHolding.SetActive(false);
+        itemHolding.transform.parent = null;
+
+        // ให้ลิงได้คะแนนเมื่อทิ้งขยะ
+        BattleModeManager.Instance.CollectTrash(true, true); // isMonkey = true
     }
+    carryingTrash = false;
+    currentBin = null;
+    FindNextTrash();
+}
+
+
 
     void UpdateAnimation()
     {
