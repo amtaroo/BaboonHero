@@ -6,11 +6,21 @@ public class MonkeyScoreManager : MonoBehaviour
 
     public void AddScore(int points)
     {
-        monkeyScore += points;
+        if (points > 0)
+        {
+            monkeyScore += points;
+            PlayerPrefs.SetInt("MonkeyScore", monkeyScore);
+            PlayerPrefs.Save();
+        }
     }
 
     public int GetScore()
     {
         return monkeyScore;
+    }
+
+    public void LoadScore()
+    {
+        monkeyScore = PlayerPrefs.GetInt("MonkeyScore", 0);
     }
 }

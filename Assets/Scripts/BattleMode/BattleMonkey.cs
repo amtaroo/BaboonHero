@@ -92,6 +92,7 @@ public class BattleMonkey : MonoBehaviour
             }
         }
 
+
         if (closestTrash != null)
         {
             targetTrash = closestTrash;
@@ -111,16 +112,20 @@ public class BattleMonkey : MonoBehaviour
             BinBattleMode binBattleMode = bin.GetComponent<BinBattleMode>();
             if (binBattleMode != null && binBattleMode.acceptedTrashType == trashType)
             {
+                Debug.Log("Found bin for type: " + trashType);
                 currentBin = bin;
                 return;
             }
         }
+        Debug.Log("No bin found for type: " + trashType);
         currentBin = null;
     }
 
+
+
     void PickUpTrash()
     {
-        Debug.Log("PickUpTrash");
+        //  Debug.Log("PickUpTrash");
         carryingTrash = true;
         itemHolding = targetTrash.gameObject;
         itemHolding.SetActive(true);
@@ -137,7 +142,7 @@ public class BattleMonkey : MonoBehaviour
 
     void GoToTrashBin()
     {
-        Debug.Log("GoToBin");
+        // Debug.Log("GoToBin");
         if (currentBin != null)
         {
             robot.SetDestination(currentBin.position);
@@ -145,20 +150,20 @@ public class BattleMonkey : MonoBehaviour
     }
 
     void DropTrash()
-{
-    Debug.Log("DropTrash");
-    if (itemHolding != null)
     {
-        itemHolding.SetActive(false);
-        itemHolding.transform.parent = null;
+        // Debug.Log("DropTrash");
+        if (itemHolding != null)
+        {
+            itemHolding.SetActive(false);
+            itemHolding.transform.parent = null;
 
-        // ให้คะแนนลิง
-        BattleModeManager.Instance.CollectTrash(true, true);
+            // ให้คะแนนลิง
+            BattleModeManager.Instance.CollectTrash(true, true);
+        }
+        carryingTrash = false;
+        currentBin = null;
+        FindNextTrash();
     }
-    carryingTrash = false;
-    currentBin = null;
-    FindNextTrash();
-}
 
 
 
@@ -180,7 +185,7 @@ public class BattleMonkey : MonoBehaviour
             {
                 animator.SetFloat("MoveX", 0);
                 animator.SetFloat("MoveY", 0);
-                animator.SetBool("isMoving", false); 
+                animator.SetBool("isMoving", false);
             }
 
             lastPosition = transform.position;

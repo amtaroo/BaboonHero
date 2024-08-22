@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public int playerScore = 0;
@@ -26,4 +26,4 @@ public class ScoreManager : MonoBehaviour
         return monkeyScore;
     }
 }
-
+*/

@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-
 public class BinBattleMode : MonoBehaviour
 {
     public TrashType acceptedTrashType;
     public TextMeshProUGUI warningText;
     public Transform playerTransform;
-    public bool isMonkey;
+    public Transform monkeyTransform;
+    public bool isMonkey;  // ตรวจสอบการตั้งค่านี้ให้ถูกต้อง
 
     private AudioManager audioManager;
 
@@ -24,27 +24,58 @@ public class BinBattleMode : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         TrashItem trashItem = other.GetComponent<TrashItem>();
-        if (trashItem != null && !trashItem.isHeld) // ขยะไม่ได้ถูกถืออยู่
+        if (trashItem != null && !trashItem.isHeld)
         {
             if (trashItem.trashType == acceptedTrashType)
             {
-                // ถูก
+                // ถูกประเภท
                 HandleCorrectTrash(other.gameObject, trashItem);
             }
             else
             {
-                // ผิด
+                // ผิดประเภท
                 HandleIncorrectTrash(other.gameObject);
             }
         }
     }
 
+    /*
+        void HandleCorrectTrash(GameObject trashObject, TrashItem trashItem)
+        {
+            Destroy(trashObject);
+            if (audioManager != null)
+            {
+                audioManager.PlaySFX(audioManager.correct);
+            }
+            Debug.Log(acceptedTrashType + " trash collected!");
+
+            BattleModeManager.Instance.CollectTrash(true, isMonkey);  // ตรวจสอบการเรียกใช้ที่นี่
+        }
+
+        void HandleIncorrectTrash(GameObject trashObject)
+        {
+            Rigidbody2D rb = trashObject.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 bounceDirection = (trashObject.transform.position - transform.position).normalized;
+                rb.AddForce(bounceDirection * 500f);
+                if (audioManager != null)
+                {
+                    audioManager.PlaySFX(audioManager.incorrect);
+                }
+                Debug.Log("Incorrect trash type! Try again!");
+
+                BattleModeManager.Instance.CollectTrash(false, isMonkey);  // ตรวจสอบการเรียกใช้ที่นี่
+            }
+        }*/
     void HandleCorrectTrash(GameObject trashObject, TrashItem trashItem)
     {
         Destroy(trashObject);
-        StartCoroutine(ShowMessage("Correct!", 1f, "#FFFFFF"));
-        audioManager.PlaySFX(audioManager.correct);
-        Debug.Log(acceptedTrashType + " trash collected!");
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.correct);
+        }
+        Debug.Log("HandleCorrectTrash: isMonkey = " + isMonkey);
 
         BattleModeManager.Instance.CollectTrash(true, isMonkey);
     }
@@ -56,32 +87,14 @@ public class BinBattleMode : MonoBehaviour
         {
             Vector2 bounceDirection = (trashObject.transform.position - transform.position).normalized;
             rb.AddForce(bounceDirection * 500f);
-            StartCoroutine(ShowMessage("Incorrect!", 1f, "#AE0000"));
-            audioManager.PlaySFX(audioManager.incorrect);
-            Debug.Log("Incorrect trash type! Try again!");
+            if (audioManager != null)
+            {
+                audioManager.PlaySFX(audioManager.incorrect);
+            }
+            Debug.Log("HandleIncorrectTrash: isMonkey = " + isMonkey);
 
             BattleModeManager.Instance.CollectTrash(false, isMonkey);
         }
     }
 
-    IEnumerator ShowMessage(string message, float duration, string hexColor)
-    {
-        warningText.gameObject.SetActive(true);
-        warningText.text = message;
-
-        if (ColorUtility.TryParseHtmlString(hexColor, out Color textColor))
-        {
-            warningText.color = textColor;
-        }
-
-        float timer = 0f;
-        while (timer < duration)
-        {
-            warningText.transform.position = Camera.main.WorldToScreenPoint(playerTransform.position + new Vector3(0, 1, 0));
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        warningText.gameObject.SetActive(false);
-    }
 }

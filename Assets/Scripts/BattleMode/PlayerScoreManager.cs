@@ -6,11 +6,21 @@ public class PlayerScoreManager : MonoBehaviour
 
     public void AddScore(int points)
     {
-        playerScore += points;
+        if (points > 0)
+        {
+            playerScore += points;
+            PlayerPrefs.SetInt("PlayerScore", playerScore);
+            PlayerPrefs.Save();
+        }
     }
 
     public int GetScore()
     {
         return playerScore;
+    }
+
+    public void LoadScore()
+    {
+        playerScore = PlayerPrefs.GetInt("PlayerScore", 0);
     }
 }
