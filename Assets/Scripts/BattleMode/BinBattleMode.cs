@@ -7,7 +7,7 @@ public class BinBattleMode : MonoBehaviour
     public TextMeshProUGUI warningText;
     public Transform playerTransform;
     public Transform monkeyTransform;
-    public bool isMonkey;  // ตรวจสอบการตั้งค่านี้ให้ถูกต้อง
+    public bool isMonkey;
 
     private AudioManager audioManager;
 
@@ -39,35 +39,7 @@ public class BinBattleMode : MonoBehaviour
         }
     }
 
-    /*
-        void HandleCorrectTrash(GameObject trashObject, TrashItem trashItem)
-        {
-            Destroy(trashObject);
-            if (audioManager != null)
-            {
-                audioManager.PlaySFX(audioManager.correct);
-            }
-            Debug.Log(acceptedTrashType + " trash collected!");
 
-            BattleModeManager.Instance.CollectTrash(true, isMonkey);  // ตรวจสอบการเรียกใช้ที่นี่
-        }
-
-        void HandleIncorrectTrash(GameObject trashObject)
-        {
-            Rigidbody2D rb = trashObject.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 bounceDirection = (trashObject.transform.position - transform.position).normalized;
-                rb.AddForce(bounceDirection * 500f);
-                if (audioManager != null)
-                {
-                    audioManager.PlaySFX(audioManager.incorrect);
-                }
-                Debug.Log("Incorrect trash type! Try again!");
-
-                BattleModeManager.Instance.CollectTrash(false, isMonkey);  // ตรวจสอบการเรียกใช้ที่นี่
-            }
-        }*/
     void HandleCorrectTrash(GameObject trashObject, TrashItem trashItem)
     {
         Destroy(trashObject);

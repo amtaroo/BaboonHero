@@ -70,7 +70,6 @@ public class BattleMonkey : MonoBehaviour
 
         UpdateAnimation();
     }
-
     void FindNextTrash()
     {
         GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("Trash");
@@ -81,7 +80,8 @@ public class BattleMonkey : MonoBehaviour
         {
             TrashItem targetTrashItem = trash.GetComponent<TrashItem>();
 
-            if (!targetTrashItem.isBeingHeldByPlayer && trash.activeInHierarchy)
+            // ตรวจสอบว่าขยะมาจาก spawnPointSet1
+            if (!targetTrashItem.isBeingHeldByPlayer && trash.activeInHierarchy && IsFromSpawnPointSet1(trash.transform))
             {
                 float distance = Vector2.Distance(transform.position, trash.transform.position);
                 if (distance < closestDistance)
@@ -91,7 +91,6 @@ public class BattleMonkey : MonoBehaviour
                 }
             }
         }
-
 
         if (closestTrash != null)
         {
@@ -103,6 +102,18 @@ public class BattleMonkey : MonoBehaviour
         {
             targetTrash = null;
         }
+    }
+    // ตรวจสอบว่าขยะมาจาก spawnPointSet1
+    bool IsFromSpawnPointSet1(Transform trashTransform)
+    {
+        foreach (Transform spawnPoint in BattleModeManager.Instance.spawnPointsSet1)
+        {
+            if (trashTransform.position == spawnPoint.position)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void FindTrashBinForType(TrashType trashType)
